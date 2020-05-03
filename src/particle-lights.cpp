@@ -9,8 +9,9 @@
 void setup();
 void loop();
 int setBrightness(String input);
-int notifyOnCall(String input);
+int toggleOnCall(String input);
 void rainbow(uint8_t wait);
+void colorAll(uint32_t c, uint8_t wait);
 uint32_t Wheel(byte WheelPos);
 #line 3 "/Users/anthonyfox/dev/particle-lights/src/particle-lights.ino"
 SYSTEM_MODE(AUTOMATIC);
@@ -21,24 +22,28 @@ SYSTEM_MODE(AUTOMATIC);
 
 Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
 
-int defaultRoutine(String input);
-
 int brightness = 100;
+bool onCall = false;
 
 void setup() {
   strip.begin();
   strip.show();
 
   Particle.variable("brightness", brightness);
+  Particle.variable("onCall", onCall);
 
   Particle.function("setBrightness", setBrightness);
-  Particle.function("notifyOnCall", notifyOnCall);
-  Particle.function("defaultRoutine", defaultRoutine);
+  Particle.function("toggleOnCall", toggleOnCall);
 }
 
 void loop() {
   strip.setBrightness(brightness);
-  defaultRoutine("");
+  if (onCall) {
+    strip.setBrightness(200);
+    colorAll(strip.Color(255, 0, 100), 20);
+  } else {
+    rainbow(20);
+  }
 }
 
 int setBrightness(String input) {
@@ -46,16 +51,8 @@ int setBrightness(String input) {
   return 0;
 }
 
-int defaultRoutine(String input) {
-  rainbow(20);
-  return 0;
-}
-
-int notifyOnCall(String input) {
-  uint16_t i;
-  for (i = 0; i < strip.numPixels(); i++) {
-    strip.setPixelColor(i, RGB_COLOR_MAGENTA);
-  }
+int toggleOnCall(String input) {
+  onCall = !onCall;
   return 0;
 }
 
@@ -68,6 +65,16 @@ void rainbow(uint8_t wait) {
     strip.show();
     delay(wait);
   }
+}
+
+void colorAll(uint32_t c, uint8_t wait) {
+  uint16_t i;
+
+  for (i = 0; i < strip.numPixels(); i++) {
+    strip.setPixelColor(i, c);
+  }
+  strip.show();
+  delay(wait);
 }
 
 // Input a value 0 to 255 to get a color value.
