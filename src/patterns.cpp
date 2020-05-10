@@ -14,23 +14,23 @@ uint32_t Wheel(byte WheelPos) {
   }
 }
 
-void rainbow(Adafruit_NeoPixel strip, uint8_t wait) {
+void rainbow(Adafruit_NeoPixel *strip, uint8_t wait) {
   uint16_t i, j;
   for (j = 0; j < 256; j++) {
-    for (i = 0; i < strip.numPixels(); i++) {
-      strip.setPixelColor(i, Wheel((i + j) & 255));
+    for (i = 0; i < strip->numPixels(); i++) {
+      strip->setPixelColor(i, Wheel((i + j) & 255));
     }
-    strip.show();
+    strip->show();
     delay(wait);
   }
 }
 
-void colorAll(Adafruit_NeoPixel strip, uint32_t c, uint8_t wait) {
+void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
   uint16_t i;
 
-  for (i = 0; i < strip.numPixels(); i++) {
-    strip.setPixelColor(i, c);
+  for (i = 0; i < strip->numPixels(); i++) {
+    strip->setPixelColor(i, c);
   }
-  strip.show();
+  strip->show();
   delay(wait);
 }

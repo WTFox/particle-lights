@@ -4,3 +4,4 @@ target/*
 .DS_STORE
 
 src/particle-lights.cpp
+photon_firmware_*
