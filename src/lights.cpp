@@ -6,6 +6,9 @@
 #define PIXEL_COUNT 99
 #define PIXEL_TYPE WS2811
 
+void RainbowStepper(Adafruit_NeoPixel *strip, uint8_t iteration);
+uint32_t Wheel(byte WheelPos);
+
 Adafruit_NeoPixel *strip =
     new Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
 
@@ -35,6 +38,12 @@ void Lights::update() {
         strip->setBrightness(200);
         colorAll(strip, Adafruit_NeoPixel::Color(255, 0, 100), 20);
     } else {
-        rainbow(strip, 20);
+        RainbowStepper(strip, iteration);
     }
+
+    iteration++;
+    if (iteration >= 256) {
+        iteration = 0;
+    }
+    delay(20);
 }
