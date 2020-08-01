@@ -1,10 +1,9 @@
 #pragma once
 
-#include "arr.h"
+#include "IObject.h"
 
-class Lights : public IArduinoObject {
+class Lights : public IObject {
   public:
-    Lights(){};
     int iteration;
     void setup() override;
     void update() override;

@@ -6,9 +6,6 @@
 #define PIXEL_COUNT 99
 #define PIXEL_TYPE WS2811
 
-void RainbowStepper(Adafruit_NeoPixel *strip, uint8_t iteration);
-uint32_t Wheel(byte WheelPos);
-
 Adafruit_NeoPixel *strip =
     new Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
 
@@ -27,6 +24,8 @@ int toggleOnCall(String input) {
 void Lights::setup() {
     strip->begin();
     strip->show();
+
+    // Register module particle functions
     Particle.variable("brightness", brightness);
     Particle.variable("onCall", onCall);
     Particle.function("setBrightness", setBrightness);
@@ -41,6 +40,9 @@ void Lights::update() {
         RainbowStepper(strip, iteration);
     }
 
+    // Resetting iteration to 0 once we hit 257
+    // so that we can correctly cycle through 256
+    // colors.
     iteration++;
     if (iteration >= 256) {
         iteration = 0;
