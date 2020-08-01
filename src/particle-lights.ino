@@ -7,7 +7,6 @@ SYSTEM_MODE(AUTOMATIC);
 // A reference to a Lights object
 Lights *lights;
 
-#pragma region Particle
 int toggleOnCall(String input) {
     lights->setOnCall(!lights->getOnCall());
     return 0;
@@ -28,7 +27,6 @@ void registerParticleFunctions() {
     Particle.function("toggleOnCall", toggleOnCall);
     Particle.function("getOnCall", getOnCall);
 }
-#pragma endregion
 
 // objects hold a collection of IObject's. These ensure that the methods setup()
 // and update() exist.

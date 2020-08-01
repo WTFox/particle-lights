@@ -33,7 +33,7 @@ void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
     delay(wait);
 }
 
-void RainbowStepper(Adafruit_NeoPixel *strip, uint8_t iteration) {
+void rainbowFromIteration(Adafruit_NeoPixel *strip, uint8_t iteration) {
     uint16_t i;
     for (i = 0; i < strip->numPixels(); i++) {
         strip->setPixelColor(i, Wheel((i + iteration) & 255));
