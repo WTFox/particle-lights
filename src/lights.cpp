@@ -22,8 +22,12 @@ void Lights::setup() {
 }
 
 void Lights::update() {
-    strip->setBrightness(100);
-    colorAll(strip, Adafruit_NeoPixel::Color(255, 0, 100), 20);
+    strip->setBrightness(255);
+    for (uint16_t i = 0; i < strip->numPixels(); i++) {
+        strip->setPixelColor(i, Adafruit_NeoPixel::Color(255, 0, 100));
+    }
+    strip->show();
+    delay(20);
     // if (onCall) {
     //     strip->setBrightness(200);
     //     colorAll(strip, Adafruit_NeoPixel::Color(255, 0, 100), 20);
