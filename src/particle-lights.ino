@@ -4,19 +4,26 @@
 
 SYSTEM_MODE(AUTOMATIC);
 
-std::vector<IArduinoObject> objects;
+std::vector<Lights *> objects;
 
 void setup() {
-    Lights lights;
+    Serial.begin(9600);
+
+    Lights *lights = new Lights();
     objects.push_back(lights);
 
+    Serial.println(objects.size());
+
     for (uint i = 0; i < objects.size(); i++) {
-        objects[i].setup();
+        objects[i]->setup();
     }
 }
 
 void loop() {
     for (uint i = 0; i < objects.size(); i++) {
-        objects[i].update();
+        Serial.println("main loop");
+        // Serial.println(typeid(objects[i]).name());
+        objects[i]->update();
     }
+    delay(5000);
 }
