@@ -15,6 +15,7 @@ void Lights::setup() {
 }
 
 void Lights::update() {
+    strip->setBrightness(brightness_);
     if (onCall_) {
         strip->setBrightness(200);
         colorAll(strip, Adafruit_NeoPixel::Color(255, 0, 100), 20);
