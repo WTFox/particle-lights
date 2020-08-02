@@ -1,25 +1,25 @@
 #include "IComponent.h"
-#include "lights.h"
+#include "LightController.h"
 #include <vector>
 
 SYSTEM_MODE(AUTOMATIC);
 
-// A reference to a Lights object
-Lights *lights;
+// A reference to a LightController component
+LightController *lightController;
 
 int toggleOnCall(String input) {
-    lights->setOnCall(!lights->getOnCall());
+    lightController->setOnCall(!lightController->getOnCall());
     return 0;
 }
 
-int getOnCall(String input) { return lights->getOnCall(); }
+int getOnCall(String input) { return lightController->getOnCall(); }
 
 int setBrightness(String input) {
-    lights->setBrightness(input.toInt());
+    lightController->setBrightness(input.toInt());
     return 0;
 }
 
-int getBrightness(String input) { return lights->getBrightness(); }
+int getBrightness(String input) { return lightController->getBrightness(); }
 
 void registerParticleFunctions() {
     Particle.function("getBrightness", getBrightness);
@@ -35,17 +35,17 @@ std::vector<IComponent *> components;
 void setup() {
     registerParticleFunctions();
 
-    lights = new Lights();
-    components.push_back(lights);
+    lightController = new LightController();
+    components.push_back(lightController);
 
-    // Run setup for all objects
+    // Run setup for all components
     for (uint i = 0; i < components.size(); i++) {
         components[i]->setup();
     }
 }
 
 void loop() {
-    // run update for all objects
+    // run update for all components
     for (uint i = 0; i < components.size(); i++) {
         components[i]->update();
     }
