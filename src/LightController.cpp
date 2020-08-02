@@ -22,6 +22,9 @@ void LightController::update() {
         rainbowFromIteration(strip_, iteration_);
     }
 
+    // iteration_ will increment to 255 before resetting to 0. This is
+    // intentional as it allows us to effectively iterate over 255 different
+    // shades of each color before restarting the color wheel cycle.
     iteration_++;
     delay(20);
 }
