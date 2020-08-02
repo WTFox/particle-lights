@@ -1,11 +1,11 @@
 #pragma once
 
-#include "IObject.h"
+#include "IComponent.h"
 #include "neopixel.h"
 
-class Lights : public IObject {
-    int iteration_ = 0;
-    int brightness_ = 100;
+class Lights : public IComponent {
+    uint8_t iteration_ = 0;
+    uint8_t brightness_ = 100;
     bool onCall_ = false;
     Adafruit_NeoPixel *strip_;
 

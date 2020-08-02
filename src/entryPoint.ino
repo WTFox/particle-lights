@@ -1,4 +1,4 @@
-#include "IObject.h"
+#include "IComponent.h"
 #include "lights.h"
 #include <vector>
 
@@ -28,25 +28,25 @@ void registerParticleFunctions() {
     Particle.function("getOnCall", getOnCall);
 }
 
-// objects hold a collection of IObject's. These ensure that the methods setup()
-// and update() exist.
-std::vector<IObject *> objects;
+// components hold a collection of IComponent's. These ensure that the methods
+// setup() and update() exist.
+std::vector<IComponent *> components;
 
 void setup() {
     registerParticleFunctions();
 
     lights = new Lights();
-    objects.push_back(lights);
+    components.push_back(lights);
 
     // Run setup for all objects
-    for (uint i = 0; i < objects.size(); i++) {
-        objects[i]->setup();
+    for (uint i = 0; i < components.size(); i++) {
+        components[i]->setup();
     }
 }
 
 void loop() {
     // run update for all objects
-    for (uint i = 0; i < objects.size(); i++) {
-        objects[i]->update();
+    for (uint i = 0; i < components.size(); i++) {
+        components[i]->update();
     }
 }

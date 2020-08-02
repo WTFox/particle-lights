@@ -22,12 +22,7 @@ void Lights::update() {
         rainbowFromIteration(strip_, iteration_);
     }
 
-    // Resetting iteration_ to 0 once we hit 257 so that we can correctly cycle
-    // through 256 colors.
     iteration_++;
-    if (iteration_ >= 256) {
-        iteration_ = 0;
-    }
     delay(20);
 }
 
