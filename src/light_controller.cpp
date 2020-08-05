@@ -1,4 +1,4 @@
-#include "LightController.h"
+#include "light_controller.h"
 #include "neopixel.h"
 
 #define PIXEL_PIN D5
@@ -38,7 +38,7 @@ void LightController::setOnCall(bool value) { this->onCall_ = value; }
 
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
-uint32_t Wheel(byte WheelPos) {
+uint32_t wheel(byte WheelPos) {
     if (WheelPos < 85) {
         return Adafruit_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
     } else if (WheelPos < 170) {
@@ -61,7 +61,7 @@ void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
 void rainbowFromIteration(Adafruit_NeoPixel *strip, uint8_t iteration) {
     uint16_t i;
     for (i = 0; i < strip->numPixels(); i++) {
-        strip->setPixelColor(i, Wheel((i + iteration) & 255));
+        strip->setPixelColor(i, wheel((i + iteration) & 255));
     }
     strip->show();
 }

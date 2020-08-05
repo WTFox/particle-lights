@@ -1,5 +1,5 @@
-#include "IComponent.h"
-#include "LightController.h"
+#include "component.h"
+#include "light_controller.h"
 #include <vector>
 
 LightController *lightController;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IComponent.h"
+#include "component.h"
 #include "neopixel.h"
 
 class LightController : public IComponent {
@@ -20,6 +20,6 @@ class LightController : public IComponent {
     void setOnCall(bool value);
 };
 
-uint32_t Wheel(byte WheelPos);
+uint32_t wheel(byte WheelPos);
 void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait);
 void rainbowFromIteration(Adafruit_NeoPixel *strip, uint8_t iteration);
