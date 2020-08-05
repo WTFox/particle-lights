@@ -2,13 +2,8 @@
 #include "LightController.h"
 #include <vector>
 
-SYSTEM_MODE(AUTOMATIC);
-
-// A reference to a LightController component
 LightController *lightController;
 
-// components hold a collection of IComponent's. These ensure that the methods
-// setup() and update() exist.
 std::vector<IComponent *> components;
 
 void setup() {
@@ -17,14 +12,12 @@ void setup() {
     lightController = new LightController();
     components.push_back(lightController);
 
-    // Run setup for all components
     for (IComponent *component : components) {
         component->setup();
     }
 }
 
 void loop() {
-    // run update for all components
     for (IComponent *component : components) {
         component->update();
     }

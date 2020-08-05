@@ -1,4 +1,3 @@
-// This is needed so that we avoid redefinition errors
 #pragma once
 
 class IComponent {

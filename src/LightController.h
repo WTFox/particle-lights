@@ -19,3 +19,7 @@ class LightController : public IComponent {
     bool getOnCall();
     void setOnCall(bool value);
 };
+
+uint32_t Wheel(byte WheelPos);
+void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait);
+void rainbowFromIteration(Adafruit_NeoPixel *strip, uint8_t iteration);
