@@ -39,14 +39,14 @@ void setup() {
     components.push_back(lightController);
 
     // Run setup for all components
-    for (uint i = 0; i < components.size(); i++) {
-        components[i]->setup();
+    for (IComponent *component : components) {
+        component->setup();
     }
 }
 
 void loop() {
     // run update for all components
-    for (uint i = 0; i < components.size(); i++) {
-        components[i]->update();
+    for (IComponent *component : components) {
+        component->update();
     }
 }
