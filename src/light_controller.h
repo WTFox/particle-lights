@@ -21,5 +21,5 @@ class LightController : public IComponent {
 };
 
 uint32_t wheel(byte WheelPos);
-void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait);
-void rainbowFromIteration(Adafruit_NeoPixel *strip, uint8_t iteration);
+void colorAll(Adafruit_NeoPixel *strip, uint32_t c);
+void rainbow(Adafruit_NeoPixel *strip, uint8_t iteration);

@@ -16,16 +16,15 @@ void LightController::update() {
 
     if (this->onCall_) {
         this->strip_->setBrightness(200);
-        colorAll(this->strip_, Adafruit_NeoPixel::Color(255, 0, 100), 20);
+        colorAll(this->strip_, Adafruit_NeoPixel::Color(255, 0, 100));
     } else {
-        rainbowFromIteration(this->strip_, this->iteration_);
+        rainbow(this->strip_, this->iteration_);
     }
 
     // this->iteration_ will increment to 255 before resetting to 0. This is
     // intentional as it allows us to effectively iterate over 255 different
     // shades of each color before restarting the color wheel cycle.
     this->iteration_++;
-    delay(20);
 }
 
 int LightController::getBrightness() { return this->brightness_; }
@@ -50,18 +49,18 @@ uint32_t wheel(byte WheelPos) {
     }
 }
 
-void colorAll(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
+void colorAll(Adafruit_NeoPixel *strip, uint32_t c) {
     for (uint16_t i = 0; i < strip->numPixels(); i++) {
         strip->setPixelColor(i, c);
     }
     strip->show();
-    delay(wait);
+    delay(20);
 }
 
-void rainbowFromIteration(Adafruit_NeoPixel *strip, uint8_t iteration) {
-    uint16_t i;
-    for (i = 0; i < strip->numPixels(); i++) {
+void rainbow(Adafruit_NeoPixel *strip, uint8_t iteration) {
+    for (uint8_t i = 0; i < strip->numPixels(); i++) {
         strip->setPixelColor(i, wheel((i + iteration) & 255));
     }
     strip->show();
+    delay(20);
 }
