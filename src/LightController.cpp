@@ -7,30 +7,30 @@
 #define PIXEL_TYPE WS2811
 
 void LightController::setup() {
-    strip_ = new Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
-    strip_->begin();
-    strip_->show();
+    this->strip_ = new Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
+    this->strip_->begin();
+    this->strip_->show();
 }
 
 void LightController::update() {
-    strip_->setBrightness(brightness_);
+    this->strip_->setBrightness(this->brightness_);
 
-    if (onCall_) {
-        strip_->setBrightness(200);
-        colorAll(strip_, strip_->Color(255, 0, 100), 20);
+    if (this->onCall_) {
+        this->strip_->setBrightness(200);
+        colorAll(this->strip_, Adafruit_NeoPixel::Color(255, 0, 100), 20);
     } else {
-        rainbowFromIteration(strip_, iteration_);
+        rainbowFromIteration(this->strip_, this->iteration_);
     }
 
-    // iteration_ will increment to 255 before resetting to 0. This is
+    // this->iteration_ will increment to 255 before resetting to 0. This is
     // intentional as it allows us to effectively iterate over 255 different
     // shades of each color before restarting the color wheel cycle.
-    iteration_++;
+    this->iteration_++;
     delay(20);
 }
 
-int LightController::getBrightness() { return brightness_; }
-void LightController::setBrightness(int value) { brightness_ = value; }
+int LightController::getBrightness() { return this->brightness_; }
+void LightController::setBrightness(int value) { this->brightness_ = value; }
 
-bool LightController::getOnCall() { return onCall_; }
-void LightController::setOnCall(bool value) { onCall_ = value; }
+bool LightController::getOnCall() { return this->onCall_; }
+void LightController::setOnCall(bool value) { this->onCall_ = value; }
