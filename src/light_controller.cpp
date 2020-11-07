@@ -2,7 +2,7 @@
 #include "neopixel.h"
 
 #define PIXEL_PIN D5
-#define PIXEL_COUNT 99
+#define PIXEL_COUNT 95
 #define PIXEL_TYPE WS2811
 
 void LightController::setup() {
@@ -37,15 +37,15 @@ void LightController::setOnCall(bool value) { this->onCall_ = value; }
 
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
-uint32_t wheel(byte WheelPos) {
-    if (WheelPos < 85) {
-        return Adafruit_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-    } else if (WheelPos < 170) {
-        WheelPos -= 85;
-        return Adafruit_NeoPixel::Color(255 - WheelPos * 3, 0, WheelPos * 3);
+uint32_t wheel(byte wheelPos) {
+    if (wheelPos < 85) {
+        return Adafruit_NeoPixel::Color(wheelPos * 3, 255 - wheelPos * 3, 0);
+    } else if (wheelPos < 170) {
+        wheelPos -= 85;
+        return Adafruit_NeoPixel::Color(255 - wheelPos * 3, 0, wheelPos * 3);
     } else {
-        WheelPos -= 170;
-        return Adafruit_NeoPixel::Color(0, WheelPos * 3, 255 - WheelPos * 3);
+        wheelPos -= 170;
+        return Adafruit_NeoPixel::Color(0, wheelPos * 3, 255 - wheelPos * 3);
     }
 }
 
