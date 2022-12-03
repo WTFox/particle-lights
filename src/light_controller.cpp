@@ -36,7 +36,7 @@ void LightController::setOnCall(bool value) { this->onCall_ = value; }
 // --- Pattern functions ---
 
 // Input a value 0 to 255 to get a color value.
-// The colours are a transition r - g - b - back to r.
+// The colours are a transition r -> g -> b -> back to r.
 uint32_t wheel(byte wheelPos) {
     if (wheelPos < 85) {
         return Adafruit_NeoPixel::Color(wheelPos * 3, 255 - wheelPos * 3, 0);

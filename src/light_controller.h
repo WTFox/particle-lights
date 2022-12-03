@@ -5,7 +5,7 @@
 
 class LightController : public IComponent {
     uint8_t iteration_ = 0;
-    uint8_t brightness_ = 100;
+    uint8_t brightness_ = 200;
     bool onCall_ = false;
     Adafruit_NeoPixel *strip_;
 
